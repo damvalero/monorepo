@@ -16,6 +16,8 @@ export interface PropsCard {
 }
 
 export interface SelectProps {
-  categories: string[];
-  onFilterValueSelected: (filterValue:string) => void
+  options: string[];
+  selectName: string;
+  onValueSelected: (filterValue: string) => void;
+  // onOrderValueSelected?: (orderValue: string) => void;
 }

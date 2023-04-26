@@ -6,12 +6,20 @@
 }
 .loading-dot-1 {
     -webkit-animation-delay: -0.32s;
+    animation: sk-bouncedelay 1.4s ease-in-out infinite both;
     animation-delay: -0.32s;
 }
 
 .loading-dot-2 {
     -webkit-animation-delay: -0.16s;
+    animation: sk-bouncedelay 1.4s ease-in-out infinite both;
     animation-delay: -0.16s;
+}
+
+.loading-dot-3 {
+    -webkit-animation-delay: -0.16s;
+    animation: sk-bouncedelay 1.4s ease-in-out infinite both;
+    animation-delay: 0s;
 }
 
 .loading>div {
@@ -20,8 +28,6 @@
     background-color: #333;
     border-radius: 100%;
     display: inline-block;
-    -webkit-animation: sk-bouncedelay 1.4s ease-in-out infinite both;
-    animation: sk-bouncedelay 1.4s ease-in-out infinite both;
 }
 
 @keyframes sk-bouncedelay {

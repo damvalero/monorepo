@@ -1,25 +1,35 @@
 import { SelectProps } from "../../types";
-import './select.css'
+import "./select.css";
 
-const Select = ({ categories, onFilterValueSelected }: SelectProps) => {
+const Select = ({ options, selectName, onValueSelected }: SelectProps) => {
   const onFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
-    onFilterValueSelected(e.target.value);
+    onValueSelected(e.target.value);
   };
 
   return (
     <>
-      <div className="select-space" >
+      <div className="select-space">
         <select
-          className="form-select"
-          name="Categories"
+          className="form-select select-option"
+          name={selectName}
           onChange={onFilterChange}
         >
-          <option selected value="all">
-            All
-          </option>
-          {categories.map((category) => {
-            return <option className="select-option" value={category}>{category}</option>;
+          {selectName === "Categories" ? (
+            <option className="select-option" selected value="all">
+              All
+            </option>
+          ) : (
+            <option className="select-option" selected value="">
+              Choose order
+            </option>
+          )}
+          {options.map((category) => {
+            return (
+              <option className="select-option" value={category}>
+                {category}
+              </option>
+            );
           })}
         </select>
       </div>
