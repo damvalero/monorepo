@@ -12,24 +12,22 @@ const Table = ({ products }: PropsTable) => {
   const sorting = (col: keyof Product) => {
     if (order === "ASC") {
       const arrange = [...tableProducts].sort((a, b) => {
-        // console.log("typeof a[col]", typeof a[col]);
-        // console.log("typeof b[col]", typeof b[col]);
-        // if (typeof a[col] === "number" && typeof b[col] === "number") {
-        //   return a[col] - b[col];
-        // } else {
+        if (typeof a[col] === "number" && typeof b[col] === "number") {
+          return a[col] - b[col];
+        } else {
           return a[col].toString().localeCompare(b[col].toString());
-        // }
+        }
       });
       setTableProducts(arrange);
       setOrder("DES");
     }
     if (order === "DES") {
       const arrange = [...tableProducts].sort((a, b) => {
-        // if (typeof a[col] === "number" || typeof b[col] === "number") {
-        //   return b[col] - a[col];
-        // } else {
+        if (typeof a[col] === "number" && typeof b[col] === "number") {
+          return b[col] - a[col];
+        } else {
           return b[col].toString().localeCompare(a[col].toString());
-        // }
+        }
       });
       setTableProducts(arrange);
       setOrder("ASC");
@@ -43,18 +41,18 @@ const Table = ({ products }: PropsTable) => {
           <tr>
             <th onClick={() => sorting("title")}>Title</th>
             <th onClick={() => sorting("category")}>Category</th>
-            {/* <th onClick={() => sorting("price")}>Price</th> */}
+            <th onClick={() => sorting("price")}>Price</th>
           </tr>
         </thead>
         <tbody>
           {tableProducts.map((product) => {
             return (
               <tr 
-              // key={product.id} 
+              key={product.id} 
               >
                 <td>{product.title}</td>
                 <td>{product.category}</td>
-                {/* <td>{product.price} €</td> */}
+                <td>{product.price} €</td>
               </tr>
             );
           })}

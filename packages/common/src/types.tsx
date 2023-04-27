@@ -21,3 +21,10 @@ export interface SelectProps {
   onValueSelected: (filterValue: string) => void;
   // onOrderValueSelected?: (orderValue: string) => void;
 }
+
+export interface PaginationProps {
+  totalPosts: number
+  productsPerPage: number
+  setCurrentPage:(page:number) => void
+  currentPage: number
+}

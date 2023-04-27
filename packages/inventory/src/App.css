@@ -27,13 +27,6 @@
   --font-little: 0.875rem
     /*14px*/
 }
-/* 
-.title-site {
-  color: var(--clr-main);
-  font-size: var(--font-title);
-  text-align: center;
-  margin-bottom: 2rem ;
-} */
 
 .text-message {
   color: var(--text);

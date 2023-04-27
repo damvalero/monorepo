@@ -6,6 +6,7 @@ import {
   Card,
   useCategories,
   Select,
+  Pagination
 } from "@bussiness/common";
 import "./App.css";
 import { Product } from "@bussiness/common/src/types";
@@ -13,12 +14,16 @@ import { Product } from "@bussiness/common/src/types";
 function App() {
   const { products } = useProducts();
   const { categories } = useCategories({ products });
-  const order = ["upward", "downward"];
   const [updateFilterText, setUpdateFilterText] = useState("all");
   const [updateOrderText, setUpdateOrderText] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1)
+  const [productsPerPage, setProductsPerPage] = useState(10)
+  const order = ["upward", "downward"];
   const PAGE_TITLE = "Ecommerce";
   const ORDER_TEXT = "Sort";
   const CATEGORY_TEXT = "Filter by Category";
+  const lastProductIndex = currentPage * productsPerPage
+  const firstProductIndex = lastProductIndex - productsPerPage;
 
   const onFilterValueSelected = (filterValue: string) => {
     setUpdateFilterText(filterValue);
@@ -37,6 +42,8 @@ function App() {
       );
     }
   }, [products, updateFilterText]);
+
+  const currentProducts = filteredProducts.slice(firstProductIndex, lastProductIndex)
 
   const sortedProducts = useMemo<Product[]>(() => {
     if (updateOrderText === "upward") {
@@ -85,8 +92,14 @@ function App() {
             </div>
           </div>
           <ul className="card-list">
-            <Card products={filteredProducts} />
+            <Card products={currentProducts} />
           </ul>
+          <Pagination
+            totalPosts={products.length}
+            productsPerPage={productsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </>
